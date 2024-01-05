@@ -5,6 +5,8 @@
 
 declare -a options
 
+options+=(start)
+
 if bashio::debug; then
     options+=(--log_level debug)
 else
