@@ -43,7 +43,7 @@ for login in $(bashio::config 'logins|keys'); do
 done
 
 # Generate ACL conf
-bashio::var.json | tempio -template /usr/share/tempio/nanomq_acl.conf -out /etc/nanomq_acl.conf
+echo '{}' | tempio -template /usr/share/tempio/nanomq_acl.conf -out /etc/nanomq_acl.conf
 
 # Generate NanoMQ conf
 bashio::var.json \
