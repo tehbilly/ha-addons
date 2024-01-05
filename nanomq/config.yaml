@@ -1,17 +1,17 @@
 name: NanoMQ
 description: NanoMQ MQTT Broker
 url: https://github.com/nanomq/nanomq
-version: 1.0.6
+version: 1.0.7
 slug: nanomq
 init: false
-startup: services
+startup: system
 arch:
   - armhf
   - armv7
   - aarch64
   - amd64
   - i386
-# auth_api: true
+auth_api: true
 ingress: false
 discovery:
   - mqtt
@@ -29,9 +29,11 @@ options:
   listen_websocket: true
   allow_anonymous: true
   logins: []
+  log_level: warn
 schema:
   listen_websocket: bool
   allow_anonymous: bool
   logins:
     - username: str
       password: password
+  log_level: list(trace|debug|info|warn|error|fatal)

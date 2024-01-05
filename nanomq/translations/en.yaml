@@ -1,0 +1,22 @@
+---
+configuration:
+  listen_websocket:
+    name: Enable Websocket Listener
+    description: >-
+      Whether or not to enable the websocket listener.
+  allow_anonymous:
+    name: Allow anonymous connections
+    description: >-
+      If enabled the broker can be used without authentication.
+  logins:
+    name: Logins
+    description: >-
+      A list of local users that will be created, each much include a `username` and a `password` element.
+  log_level:
+    name: Log level
+    description: >-
+      What level the broker should log messages at.
+network:
+  1883/tcp: Standard MQTT port
+  8083/tcp: MQTT over Websockets
+  8883/tcp: MQTT over SSL/TLS

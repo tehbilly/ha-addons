@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
 # ==============================================================================
 # Runs NanoMQ
 # ==============================================================================
@@ -13,7 +14,8 @@ else
     options+=(--log_level info)
 fi
 
-options+=(--http start)
+# TODO: Add config option for HTTP API
+# options+=(--http start)
 
 # Send out discovery and service information
 ./discovery &
