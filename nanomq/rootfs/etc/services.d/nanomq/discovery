@@ -1,0 +1,50 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Send MQTT discovery information to Home Assistant and service information
+# to the Supervisor (for other add-ons).
+# ==============================================================================
+
+readonly SYSTEM_USER="/data/system_user.json"
+
+declare config
+declare discovery_password
+declare service_password
+
+# Wait for broker to be available
+bashio::net.wait_for 1883
+
+# Read passwords
+discovery_password=$(bashio::jq "${SYSTEM_USER}" ".homeassistant.password")
+service_password=$(bashio::jq "${SYSTEM_USER}" ".addons.password")
+
+config=$(bashio::var.json \
+  host "$(hostname)" \
+  port "^1883" \
+  ssl "^false" \
+  protocol "3.1.1" \
+  username "homeassistant" \
+  password "${discovery_password}" \
+)
+
+# Send discovery info
+if bashio::discovery "mqtt" "${config}" > /dev/null 2>&1; then
+  bashio::log.info "Successfully sent discovery information to Home Assistant."
+else
+  bashio::log.error "Error sending discovery information to Home Assistant!"
+fi
+
+config=$(bashio::var.json \
+  host "$(hostname)" \
+  port "^1883" \
+  ssl "^false" \
+  protocol "3.1.1" \
+  username "addons" \
+  password "${service_password}" \
+)
+
+# Send discovery info
+if bashio::discovery "mqtt" "${config}" > /dev/null 2>&1; then
+  bashio::log.info "Successfully sent discovery information to Supervisor."
+else
+  bashio::log.error "Error sending discovery information to Supervisor!"
+fi

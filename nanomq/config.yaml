@@ -1,0 +1,37 @@
+name: NanoMQ
+description: NanoMQ MQTT Broker
+url: https://github.com/nanomq/nanomq
+version: 1.0.0
+slug: nanomq
+init: false
+startup: services
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+# auth_api: true
+ingress: false
+discovery:
+  - mqtt
+services:
+  - mqtt:provide
+ports:
+  1883/tcp: 1883
+  8083/tcp: 8083
+  8883/tcp: 8883
+ports_description:
+  1883/tcp: MQTT TCP port
+  8083/tcp: MQTT over Websockets
+  8883/tcp: MQTT over SSL/TLS
+options:
+  listen_websocket: true
+  allow_anonymous: true
+  logins: []
+schema:
+  listen_websocket: bool
+  allow_anonymous: bool
+  logins:
+    - username: str
+      password: password

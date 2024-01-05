@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Runs NanoMQ
+# ==============================================================================
+
+declare -a options
+
+if bashio::debug; then
+    options+=(--log_level debug)
+else
+    options+=(--log_level info)
+fi
+
+options+=(--http start)
+
+bashio::log.info "Starting NanoMQ MQTT broker..."
+exec nanomq "${options[@]}"

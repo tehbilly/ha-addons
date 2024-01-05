@@ -1,0 +1,9 @@
+---
+build_from:
+  aarch64: ghcr.io/home-assistant/aarch64-base
+  amd64: ghcr.io/home-assistant/amd64-base
+  armhf: ghcr.io/home-assistant/armhf-base
+  armv7: ghcr.io/home-assistant/armv7-base
+  i386: ghcr.io/home-assistant/i386-base
+args:
+  NANOMQ_VERSION: 0.20.8
