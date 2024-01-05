@@ -17,8 +17,8 @@ if ! bashio::fs.file_exists "${SYSTEM_USER}"; then
 
   # Store it for future use
   bashio::var.json \
-    homeassistant "^$(bashio::var.json password "${discovery_password})" \
-    addons "^$(bashio::var.json password "${service_password}"})" \
+    homeassistant "^$(bashio::var.json password "${discovery_password}")" \
+    addons "^$(bashio::var.json password "${service_password}")" \
     > "${SYSTEM_USER}"
 else
   # Read the existing values
