@@ -15,5 +15,8 @@ fi
 
 options+=(--http start)
 
+# Send out discovery and service information
+./discovery &
+
 bashio::log.info "Starting NanoMQ MQTT broker..."
 exec nanomq "${options[@]}"

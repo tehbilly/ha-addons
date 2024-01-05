@@ -1,7 +1,7 @@
 name: NanoMQ
 description: NanoMQ MQTT Broker
 url: https://github.com/nanomq/nanomq
-version: 1.0.5
+version: 1.0.6
 slug: nanomq
 init: false
 startup: services

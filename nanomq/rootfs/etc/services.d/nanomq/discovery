@@ -11,6 +11,7 @@ declare discovery_password
 declare service_password
 
 # Wait for broker to be available
+bashio::log.info "Waiting for MQTT broker to be available..."
 bashio::net.wait_for 1883
 
 # Read passwords
